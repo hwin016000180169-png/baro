@@ -1,0 +1,19 @@
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# 에디터 · 도구
+.vscode/
+.idea/
+*.swp
+.claude/
+node_modules/
+
+# 임시 · 백업
+*.log
+*.tmp
+*.bak
+~$*

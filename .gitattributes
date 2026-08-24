@@ -1,0 +1,13 @@
+# 저장소에는 LF로 통일 (카페24 리눅스 호스팅 기준)
+* text=auto eol=lf
+
+# 바이너리 — 변환하지 않음
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.ai  binary
+*.pdf binary
+*.woff  binary
+*.woff2 binary

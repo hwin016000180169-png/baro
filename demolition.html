@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>철거예약 — 바로철거</title>
+  <meta name="description" content="상가·인테리어·아파트·관공서 철거 무료 견적 신청. 방문 실측 후 정확한 금액을 안내합니다.">
+  <!-- TODO: 실제 도메인으로 교체 -->
+  <link rel="canonical" href="https://www.example.com/demolition.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="철거예약 — 바로철거">
+  <meta property="og:description" content="철거 일정과 무료 견적을 신청하세요. 확인 후 빠르게 연락드립니다.">
+  <meta property="og:image" content="https://www.example.com/assets/img/og.png">
+  <meta property="og:url" content="https://www.example.com/demolition.html">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/pages.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+
+  <header class="site-header scrolled">
+    <div class="container header-inner">
+      <a class="logo" href="./index.html" aria-label="바로철거 홈으로">
+        <img src="./assets/img/logo-h-white.png" alt="바로철거 — 철거·폐기물처리 전문" width="168" height="30">
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="gnb" aria-label="주요 메뉴">
+        <a href="./demolition.html" aria-current="page">철거예약</a>
+        <a href="./waste.html">폐기물예약</a>
+        <a href="./gallery.html">시공사례</a>
+        <a href="./support.html">고객센터</a>
+        <a class="header-tel num" href="tel:01000000000">010-0000-0000</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <h1>철거 예약</h1>
+        <p class="page-desc">내용을 남겨주시면 확인 후 연락드립니다. 견적은 무료이며, 방문 실측 후 정확한 금액을 안내합니다.</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container reserve-layout">
+
+        <aside>
+          <h2 class="section-title" style="font-size:22px; margin-bottom:20px;">진행 절차</h2>
+          <ol class="process-list">
+            <li><span class="p-no num">01</span><div><h3>신청 · 상담</h3><p>폼 또는 전화로 현장 정보를 알려주세요.</p></div></li>
+            <li><span class="p-no num">02</span><div><h3>방문 실측</h3><p>현장을 직접 확인하고 무료 견적을 산출합니다.</p></div></li>
+            <li><span class="p-no num">03</span><div><h3>견적 확정 · 일정 협의</h3><p>금액과 시공 일정을 확정합니다. 추가 비용은 사전에 안내합니다.</p></div></li>
+            <li><span class="p-no num">04</span><div><h3>시공 · 폐기물 처리</h3><p>철거부터 폐기물 반출까지 한 번에 마무리합니다.</p></div></li>
+          </ol>
+          <div class="process-note">
+            급한 현장은 전화가 가장 빠릅니다.<br>
+            <strong class="num"><a href="tel:01000000000">010-0000-0000</a></strong>
+          </div>
+        </aside>
+
+        <form class="reserve-form" novalidate>
+          <input type="hidden" name="type" value="demolition">
+
+          <div class="form-field">
+            <label for="f-name">이름 <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="f-name" name="name" required autocomplete="name">
+            <p class="field-error">이름을 입력해 주세요.</p>
+          </div>
+
+          <div class="form-field">
+            <label for="f-tel">연락처 <span class="req" aria-hidden="true">*</span></label>
+            <input type="tel" id="f-tel" name="tel" required inputmode="numeric" placeholder="숫자만 입력" autocomplete="tel">
+            <p class="field-error">연락 가능한 번호를 숫자만 입력해 주세요.</p>
+          </div>
+
+          <div class="form-field">
+            <label for="f-region">지역 <span class="req" aria-hidden="true">*</span></label>
+            <div class="field-row">
+              <select id="f-region" name="region" required>
+                <option value="">시/도 선택</option>
+                <option>서울</option><option>부산</option><option>대구</option><option>인천</option>
+                <option>광주</option><option>대전</option><option>울산</option><option>세종</option>
+                <option>경기</option><option>강원</option><option>충북</option><option>충남</option>
+                <option>전북</option><option>전남</option><option>경북</option><option>경남</option><option>제주</option>
+              </select>
+              <input type="text" name="address" placeholder="상세 주소 (구/동, 건물명)" aria-label="상세 주소">
+            </div>
+            <p class="field-error">지역을 선택해 주세요.</p>
+          </div>
+
+          <div class="form-field">
+            <label for="f-date">희망 날짜 <span class="req" aria-hidden="true">*</span></label>
+            <input type="date" id="f-date" name="date" required>
+            <p class="field-error">오늘 이후의 날짜를 선택해 주세요.</p>
+          </div>
+
+          <div class="form-field">
+            <label for="f-kind">철거 형태 <span class="req" aria-hidden="true">*</span></label>
+            <select id="f-kind" name="kind" required>
+              <option value="">선택해 주세요</option>
+              <option>사무실</option>
+              <option>아파트</option>
+              <option>상가</option>
+              <option>전시·팝업</option>
+              <option>병원</option>
+              <option>학교</option>
+              <option>관공서</option>
+              <option>기타</option>
+            </select>
+            <p class="field-error">철거 형태를 선택해 주세요.</p>
+          </div>
+
+          <div class="form-field">
+            <label for="f-memo">상세 내용</label>
+            <textarea id="f-memo" name="memo" placeholder="면적, 층수, 엘리베이터 유무 등을 적어주시면 견적이 빨라집니다."></textarea>
+          </div>
+
+          <div class="form-field form-agree">
+            <input type="checkbox" id="f-agree" name="agree" required>
+            <label for="f-agree">
+              개인정보 수집·이용에 동의합니다. <span class="req" aria-hidden="true">*</span>
+              <a href="./privacy.html" target="_blank" rel="noopener">개인정보처리방침 보기</a>
+            </label>
+            <p class="field-error">개인정보 수집·이용에 동의해 주세요.</p>
+          </div>
+
+          <div class="form-submit">
+            <button class="btn btn-accent" type="submit">철거 예약 신청</button>
+          </div>
+        </form>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <a class="footer-logo" href="./index.html" aria-label="바로철거 홈으로">
+          <img src="./assets/img/logo-h-white.png" alt="바로철거" width="150" height="27" loading="lazy">
+        </a>
+        <div class="footer-tel">
+          <span>상담 문의</span>
+          <strong class="num"><a href="tel:01000000000">010-0000-0000</a></strong>
+        </div>
+      </div>
+      <address class="footer-info">
+        <p><span>상호 탑클린바로철거</span><span>대표 [대표자명]</span><span>사업자등록번호 [사업자번호]</span></p>
+        <p><span>주소 [사업장 주소]</span><span>이메일 [이메일]</span></p>
+      </address>
+      <div class="footer-links">
+        <a href="./privacy.html">개인정보처리방침</a>
+        <a href="./support.html">고객센터</a>
+      </div>
+      <p class="footer-copy">© <span data-year>2026</span> 탑클린바로철거. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <div class="mobile-cta-bar">
+    <a class="cta-call" href="tel:01000000000">전화 상담</a>
+    <a class="cta-kakao" href="[카카오톡 채널 URL]" target="_blank" rel="noopener">카카오톡 상담</a>
+  </div>
+
+  <script src="./assets/js/common.js"></script>
+  <script src="./assets/js/form.js"></script>
+</body>
+</html>
