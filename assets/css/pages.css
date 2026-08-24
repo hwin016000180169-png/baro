@@ -642,3 +642,31 @@
   .hero-strip-item { flex: 1 1 100%; padding: 14px 0; }
   .hero-strip-item + .hero-strip-item { padding-left: 0; border-left: 0; border-top: 1px solid var(--color-line-dark); }
 }
+
+/* ============================================================
+   실사 이미지 적용 (IMAGE_GUIDE.md 기준 — 이미지 AI가 추가)
+   ============================================================ */
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.45; /* 텍스트 가독 확보 — 밝은 이미지면 0.35까지 낮출 것 */
+}
+.case-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+@media (min-width: 1024px) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  body[data-snap] .case-img { aspect-ratio: auto; height: 24vh; }
+}
+.lightbox-body .lb-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 78vh;
+  object-fit: contain;
+  background: rgba(247, 247, 245, 0.04);
+}
+
