@@ -99,6 +99,19 @@ address { font-style: normal; }
   color: var(--color-ink-soft);
   max-width: 560px;
 }
+/* 한국어 줄바꿈 — 마지막 줄에 단어 하나만 덩그러니 남지 않도록 줄 길이를 고르게 맞춘다.
+   (word-break: keep-all 과 함께 동작 · 미지원 브라우저는 기본 줄바꿈으로 폴백) */
+.hero-title, .hero-sub,
+.section-title, .section-desc, .page-desc,
+.cf-note, .closing-steps p,
+.strength p, .scope-item p, .book-card p, .stat-sub,
+.process-note, .download-box p, .faq-a, .form-result p {
+  text-wrap: balance;
+}
+/* 문장 단위 줄바꿈 — 문장마다 독립적으로 줄 길이를 맞춘다.
+   (한 <p> 안에서 <br>만 쓰면 뒷문장 마지막 줄에 단어가 하나만 남는 경우가 생김) */
+.ln { display: block; text-wrap: balance; }
+
 .on-dark .section-title { color: var(--color-paper); }
 .on-dark .section-desc { color: rgba(247, 247, 245, 0.66); }
 
