@@ -11,7 +11,7 @@
        비워두면 카카오톡 버튼이 자동으로 숨겨지고, 모바일 하단 바는
        '전화 상담'이 전체 폭을 차지합니다. (깨진 링크가 노출되지 않음)
      ============================================================ */
-  var KAKAO_URL = '';
+  var KAKAO_URL = 'https://open.kakao.com/o/s9mDpxKi';
 
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

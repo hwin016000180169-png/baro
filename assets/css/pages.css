@@ -127,6 +127,78 @@
 .strength p { font-size: 14.5px; color: var(--color-ink-soft); }
 
 /* ============================================================
+   [메인] 폐업지원금 — 지원 규모 + 4단계 흐름
+   ============================================================ */
+.closing { background: var(--color-ink); color: var(--color-paper); }
+.closing-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(28px, 5vw, 72px);
+  align-items: end;
+  padding-bottom: clamp(30px, 5vw, 52px);
+  border-bottom: 1px solid var(--color-line-dark);
+}
+.closing-copy .section-desc { max-width: 480px; }
+
+/* 지원 금액 — 라벨/금액 2단 정렬 */
+.closing-figures { display: grid; gap: 18px; align-content: end; }
+.cf-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-line-dark);
+}
+.cf-label { font-size: 15px; font-weight: 500; color: rgba(247, 247, 245, 0.66); }
+.cf-num {
+  font-size: clamp(30px, 4.4vw, 50px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--color-accent);
+}
+.cf-num .cf-pre {
+  font-size: 0.36em;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: rgba(247, 247, 245, 0.66);
+  margin-right: 6px;
+}
+.cf-num .suffix { font-size: 0.42em; font-weight: 500; margin-left: 3px; }
+.cf-note {
+  font-size: 13.5px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(247, 247, 245, 0.55);
+}
+
+/* 진행 4단계 */
+.closing-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: clamp(28px, 4.5vw, 48px);
+  list-style: none;
+}
+.closing-steps li { padding-right: 22px; }
+.closing-steps li + li { border-left: 1px solid var(--color-line-dark); padding-left: 22px; }
+.cs-no {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-accent);
+  margin-bottom: 14px;
+}
+.closing-steps h3 {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+.closing-steps p { font-size: 14px; font-weight: 300; color: rgba(247, 247, 245, 0.6); }
+
+/* ============================================================
    [메인] 시공 범위 — 타이포 그리드
    ============================================================ */
 .scope { background: var(--color-brand); }
@@ -596,6 +668,12 @@
   /* 섹션별 세로 압축 — 720px 높이 화면 기준으로 한 화면에 수렴 */
   body[data-snap] .strength { padding-top: 3vh; padding-bottom: 4vh; }
   body[data-snap] .strength .no { margin-bottom: 5vh; }
+  body[data-snap] .closing-grid { padding-bottom: 3.2vh; }
+  body[data-snap] .closing-figures { gap: 1.8vh; }
+  body[data-snap] .cf-item { padding-top: 1.4vh; }
+  body[data-snap] .cf-num { font-size: clamp(26px, 5.2vh, 46px); }
+  body[data-snap] .closing-steps { margin-top: 3.2vh; }
+  body[data-snap] .cs-no { margin-bottom: 1.6vh; }
   body[data-snap] .scope-item { padding: 2.6vh 24px 3vh; }
   body[data-snap] .fleet .section-head { margin-bottom: 3vh; }
   body[data-snap] .fleet-row { padding: 1.3vh 0; }
@@ -617,6 +695,10 @@
   .strength:nth-child(odd) { border-left: 0; padding-left: 0; }
   .strength:nth-child(even) { border-left: 1px solid var(--color-line); padding-left: 24px; }
   .scope-grid { grid-template-columns: 1fr 1fr; }
+  .closing-grid { grid-template-columns: 1fr; align-items: start; }
+  .closing-steps { grid-template-columns: 1fr 1fr; row-gap: 26px; }
+  .closing-steps li:nth-child(odd) { border-left: 0; padding-left: 0; }
+  .closing-steps li:nth-child(even) { border-left: 1px solid var(--color-line-dark); padding-left: 22px; }
   .cases-grid, .gallery-grid { grid-template-columns: 1fr 1fr; }
   .reserve-layout { grid-template-columns: 1fr; }
   .fleet-row { grid-template-columns: minmax(150px, 220px) 90px 1fr; gap: 16px; }
@@ -627,6 +709,9 @@
   .strength, .strength:nth-child(even) { border-left: 0; padding-left: 0; }
   .scope-grid { grid-template-columns: 1fr 1fr; }
   .scope-item { padding: 22px 18px 26px; }
+  .closing-steps { grid-template-columns: 1fr; row-gap: 22px; }
+  .closing-steps li, .closing-steps li:nth-child(even) { border-left: 0; padding-left: 0; padding-right: 0; }
+  .closing-steps li + li { border-top: 1px solid var(--color-line-dark); padding-top: 22px; }
   .cases-grid { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: 1fr; }
