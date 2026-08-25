@@ -5,6 +5,14 @@
 (function () {
   'use strict';
 
+  /* ============================================================
+     ★ 카카오톡 채널 URL — 받는 즉시 이 한 줄만 채우면 전 페이지에 반영됩니다.
+       예) var KAKAO_URL = 'https://pf.kakao.com/_xXxXxX';
+       비워두면 카카오톡 버튼이 자동으로 숨겨지고, 모바일 하단 바는
+       '전화 상담'이 전체 폭을 차지합니다. (깨진 링크가 노출되지 않음)
+     ============================================================ */
+  var KAKAO_URL = '';
+
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- 헤더: 스크롤 시 배경 ---------- */
@@ -220,6 +228,20 @@
       e.preventDefault();
       animateTo(target);
     }, { passive: false });
+  })();
+
+  /* ---------- 카카오톡 링크 배선 (URL 없으면 버튼 숨김) ---------- */
+  (function () {
+    var url = (KAKAO_URL || '').trim();
+    var bar = document.querySelector('.mobile-cta-bar');
+    if (url) {
+      document.querySelectorAll('[data-kakao]').forEach(function (a) { a.href = url; });
+      document.querySelectorAll('[data-kakao-wrap]').forEach(function (el) { el.hidden = false; });
+      if (bar) bar.classList.remove('is-single');
+    } else {
+      document.querySelectorAll('[data-kakao-wrap]').forEach(function (el) { el.hidden = true; });
+      if (bar) bar.classList.add('is-single');
+    }
   })();
 
   /* ---------- 푸터 연도 ---------- */

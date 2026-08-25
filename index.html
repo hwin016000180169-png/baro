@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>바로철거 — 철거·폐기물 처리 전문</title>
   <meta name="description" content="상가·인테리어·아파트부터 관공서·군부대까지. 10년 경력, 자체 장비 25대 이상의 철거·폐기물 처리 전문 바로철거. 무료 현장 견적.">
-  <!-- TODO: 실제 도메인으로 교체 -->
-  <link rel="canonical" href="https://www.example.com/">
+  
+  <link rel="canonical" href="https://direct-demolition.com/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="바로철거 — 철거·폐기물 처리 전문">
   <meta property="og:description" content="10년 경력, 자체 장비 25대 이상. 무료 현장 견적부터 폐기물 처리까지 한 번에.">
-  <meta property="og:image" content="https://www.example.com/assets/img/og.png">
-  <meta property="og:url" content="https://www.example.com/">
+  <meta property="og:image" content="https://direct-demolition.com/assets/img/og.png">
+  <meta property="og:url" content="https://direct-demolition.com/">
   <!-- 검색엔진 소유권 확인 메타태그 자리
   <meta name="naver-site-verification" content="">
   <meta name="google-site-verification" content="">
@@ -23,20 +23,41 @@
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": "https://direct-demolition.com/#business",
     "name": "바로철거",
     "legalName": "탑클린바로철거",
     "description": "철거 및 폐기물 처리 전문 업체. 상가·인테리어·전시·아파트·오피스·병원·학교·관공서·군부대 철거.",
-    "telephone": "+82-10-0000-0000",
-    "url": "https://www.example.com/",
+    "url": "https://direct-demolition.com/",
+    "telephone": "+82-1661-8570",
+    "image": "https://direct-demolition.com/assets/img/og.png",
+    "logo": "https://direct-demolition.com/assets/img/logo-h-black.png",
+    "taxID": "496-26-01952",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "KR",
-      "addressRegion": "[시/도]",
-      "streetAddress": "[주소]"
+      "addressRegion": "경기도",
+      "addressLocality": "의정부시",
+      "streetAddress": "배꽃길 7 더리브 센텀스퀘어 2동 910호"
     },
     "openingHours": "Mo-Sa 08:00-18:00",
     "areaServed": "대한민국 전국",
-    "priceRange": "무료 견적"
+    "priceRange": "무료 견적",
+    "sameAs": [
+      "https://www.instagram.com/baro_direct_demolition",
+      "https://www.youtube.com/channel/UCP41piBJr0wwGOeHVL8Aqrg"
+    ],
+    "location": [
+      {
+        "@type": "Place",
+        "name": "바로철거 의정부본점",
+        "address": { "@type": "PostalAddress", "addressCountry": "KR", "addressRegion": "경기도", "addressLocality": "의정부시", "streetAddress": "배꽃길 7 더리브 센텀스퀘어 2동 910호" }
+      },
+      {
+        "@type": "Place",
+        "name": "바로철거 구리지점",
+        "address": { "@type": "PostalAddress", "addressCountry": "KR", "addressRegion": "경기도", "addressLocality": "구리시", "streetAddress": "토평동 270-5" }
+      }
+    ]
   }
   </script>
 </head>
@@ -56,8 +77,8 @@
         <a href="./waste.html">폐기물예약</a>
         <a href="./gallery.html">시공사례</a>
         <a href="./support.html">고객센터</a>
-        <!-- TODO: 실제 전화번호로 교체 -->
-        <a class="header-tel num" href="tel:01000000000">010-0000-0000</a>
+        
+        <a class="header-tel num" href="tel:16618570">1661-8570</a>
       </nav>
     </div>
   </header>
@@ -76,7 +97,7 @@
           <h1 class="hero-title">비워야 하는 자리,<br><em>바로</em> 철거합니다</h1>
           <p class="hero-sub">상가부터 관공서까지 — 10년의 현장 경험과 25대 이상의 자체 장비로 견적부터 폐기물 처리까지 한 번에 끝냅니다.</p>
           <div class="hero-actions">
-            <a class="btn btn-accent" href="tel:01000000000">전화 상담&nbsp;<span class="num">010-0000-0000</span></a>
+            <a class="btn btn-accent" href="tel:16618570">전화 상담&nbsp;<span class="num">1661-8570</span></a>
             <a class="btn btn-ghost-light" href="./demolition.html">무료 견적 신청</a>
           </div>
         </div>
@@ -263,7 +284,7 @@
         </div>
         <div class="book-tel reveal">
           <p>급한 현장은 전화가 가장 빠릅니다. 상담은 무료입니다.</p>
-          <a class="num" href="tel:01000000000">010-0000-0000</a>
+          <a class="num" href="tel:16618570">1661-8570</a>
         </div>
       </div>
     </section>
@@ -273,43 +294,55 @@
   <!-- 8. 푸터 -->
   <footer class="site-footer">
     <div class="container">
+
       <div class="footer-top">
         <a class="footer-logo" href="./index.html" aria-label="바로철거 홈으로">
           <img src="./assets/img/logo-h-white.png" alt="바로철거" width="150" height="27" loading="lazy">
         </a>
-        <div class="footer-tel">
-          <span>상담 문의</span>
-          <strong class="num"><a href="tel:01000000000">010-0000-0000</a></strong>
+        <div class="footer-contact">
+          <div class="footer-tel">
+            <span>대표번호</span>
+            <strong class="num"><a href="tel:16618570">1661-8570</a></strong>
+          </div>
+          <ul class="footer-sns">
+            <li><a href="https://www.instagram.com/baro_direct_demolition" target="_blank" rel="noopener" aria-label="바로철거 인스타그램 (새 창에서 열림)"><img src="./assets/img/icon/insta200.png" alt="" width="22" height="22" loading="lazy"></a></li>
+            <li><a href="https://www.youtube.com/channel/UCP41piBJr0wwGOeHVL8Aqrg" target="_blank" rel="noopener" aria-label="바로철거 유튜브 (새 창에서 열림)"><img src="./assets/img/icon/youtube.png" alt="" width="22" height="22" loading="lazy"></a></li>
+            <li data-kakao-wrap hidden><a data-kakao href="#" target="_blank" rel="noopener" aria-label="바로철거 카카오톡 상담 (새 창에서 열림)"><img src="./assets/img/icon/kakao200.png" alt="" width="22" height="22" loading="lazy"></a></li>
+          </ul>
         </div>
       </div>
+
       <address class="footer-info">
-        <p>
-          <span>상호 탑클린바로철거</span>
-          <span>대표 [대표자명]</span>
-          <span>사업자등록번호 [사업자번호]</span>
-        </p>
-        <p>
-          <span>주소 [사업장 주소]</span>
-          <span>이메일 [이메일]</span>
-        </p>
+        <dl>
+          <div class="fi-row"><dt>상호</dt><dd>탑클린바로철거</dd></div>
+          <div class="fi-row"><dt>대표</dt><dd>[대표자명]</dd></div>
+          <div class="fi-row"><dt>사업자등록번호</dt><dd class="num">496-26-01952</dd></div>
+          <div class="fi-row"><dt>이메일</dt><dd>[이메일]</dd></div>
+          <div class="fi-row fi-wide"><dt>의정부본점</dt><dd>경기도 의정부시 배꽃길 7, 더리브 센텀스퀘어 2동 910호</dd></div>
+          <div class="fi-row fi-wide"><dt>구리지점</dt><dd>경기도 구리시 토평동 270-5</dd></div>
+        </dl>
       </address>
-      <div class="footer-links">
-        <a href="./privacy.html">개인정보처리방침</a>
-        <a href="./support.html">고객센터</a>
+
+      <div class="footer-bottom">
+        <div class="footer-links">
+          <a href="./privacy.html">개인정보처리방침</a>
+          <a href="./support.html">고객센터</a>
+        </div>
+        <p class="footer-copy">&copy; <span data-year>2026</span> 탑클린바로철거. All rights reserved.</p>
       </div>
-      <p class="footer-copy">© <span data-year>2026</span> 탑클린바로철거. All rights reserved.</p>
+
     </div>
   </footer>
 
   <!-- 모바일 하단 고정 바 -->
   <div class="mobile-cta-bar">
-    <a class="cta-call" href="tel:01000000000">전화 상담</a>
-    <!-- TODO: 카카오톡 채널 URL로 교체 -->
-    <a class="cta-kakao" href="[카카오톡 채널 URL]" target="_blank" rel="noopener">카카오톡 상담</a>
+    <a class="cta-call" href="tel:16618570"><svg class="ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.3.2 2.5.57 3.6a1 1 0 0 1-.25 1l-2.2 2.2Z"/></svg>전화 상담</a>
+    
+    <a class="cta-kakao" data-kakao data-kakao-wrap hidden href="#" target="_blank" rel="noopener"><img src="./assets/img/icon/kakao200.png" alt="" width="18" height="18">카카오톡 상담</a>
   </div>
 
   <!-- 데스크톱 플로팅 전화 -->
-  <a class="floating-call num" href="tel:01000000000">전화 상담 010-0000-0000</a>
+  <a class="floating-call num" href="tel:16618570"><svg class="ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.3.2 2.5.57 3.6a1 1 0 0 1-.25 1l-2.2 2.2Z"/></svg>전화 상담 1661-8570</a>
 
   <script src="./assets/js/common.js"></script>
 </body>

@@ -531,6 +531,10 @@
 }
 .download-box h3 { font-size: 17px; font-weight: 800; }
 .download-box p { font-size: 14px; color: var(--color-ink-soft); margin-top: 4px; }
+.download-box p a.dl-tel { color: var(--color-ink); font-weight: 800; border-bottom: 1px solid var(--color-line); }
+.download-box p a.dl-tel:hover { color: var(--color-accent-deep); border-color: var(--color-accent-deep); }
+.download-box .btn { white-space: nowrap; }
+.dl-meta { font-size: 12px; font-weight: 500; opacity: 0.6; letter-spacing: 0.04em; }
 
 .faq-list { border-top: 1px solid var(--color-ink); }
 .faq-list details { border-bottom: 1px solid var(--color-line); }

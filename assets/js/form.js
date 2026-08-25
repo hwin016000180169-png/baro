@@ -7,9 +7,9 @@
 
   // TODO: Google Apps Script 웹 앱 배포 URL로 교체
   var FORM_ENDPOINT = '[APPS_SCRIPT_URL]';
-  // TODO: 실제 전화번호로 교체
-  var TEL_DISPLAY = '010-0000-0000';
-  var TEL_HREF = 'tel:01000000000';
+  // 대표번호
+  var TEL_DISPLAY = '1661-8570';
+  var TEL_HREF = 'tel:16618570';
 
   var form = document.querySelector('.reserve-form');
   if (!form) return;

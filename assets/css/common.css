@@ -42,6 +42,7 @@ body {
   word-break: keep-all;
 }
 
+[hidden] { display: none !important; }  /* display를 지정한 규칙에 hidden이 무력화되지 않도록 */
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-decoration: none; }
 ul, ol { list-style: none; }
@@ -217,33 +218,90 @@ address { font-style: normal; }
   color: rgba(247, 247, 245, 0.55);
   padding: 56px 0 40px;
   font-size: 13.5px;
-  line-height: 1.8;
+  line-height: 1.75;
 }
+
+/* 상단 — 로고 / 대표번호 + SNS */
 .footer-top {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  gap: 32px;
+  gap: 24px 32px;
   flex-wrap: wrap;
-  padding-bottom: 28px;
+  padding-bottom: 26px;
   border-bottom: 1px solid var(--color-line-dark);
 }
-.footer-logo img { width: 150px; height: 27px; object-fit: contain; object-position: left center; opacity: 0.9; }
-.footer-tel { text-align: right; }
+.footer-logo img {
+  display: block;
+  width: 150px; height: 27px;
+  object-fit: contain; object-position: left center;
+  opacity: 0.9;
+}
+.footer-contact {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.footer-tel { text-align: right; line-height: 1.3; }
+.footer-tel > span { display: block; font-size: 12.5px; letter-spacing: 0.02em; }
 .footer-tel strong {
   display: block;
-  font-size: 24px;
+  margin-top: 3px;
+  font-size: 26px;
   font-weight: 800;
   color: var(--color-paper);
-  line-height: 1.3;
+  letter-spacing: -0.01em;
 }
-.footer-tel span { font-size: 13px; }
-.footer-info { padding-top: 26px; }
-.footer-info p span { display: inline-block; margin-right: 16px; }
-.footer-links { margin-top: 14px; display: flex; gap: 18px; }
+.footer-tel strong a:hover { color: var(--color-accent); }
+
+.footer-sns { display: flex; gap: 8px; }
+.footer-sns a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; height: 44px;
+  border: 1px solid var(--color-line-dark);
+  border-radius: 50%;
+  transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+.footer-sns a:hover { border-color: rgba(247, 247, 245, 0.45); background: rgba(247, 247, 245, 0.06); }
+.footer-sns img { width: 21px; height: 21px; object-fit: contain; opacity: 0.8; transition: opacity 0.2s var(--ease); }
+.footer-sns a:hover img { opacity: 1; }
+
+/* 사업자 정보 — 라벨/값 2열 정렬 */
+.footer-info { padding-top: 26px; font-style: normal; }
+.footer-info dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 48px;
+  row-gap: 7px;
+}
+.fi-row {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  gap: 12px;
+  align-items: baseline;
+}
+.fi-row dt { color: rgba(247, 247, 245, 0.38); font-weight: 400; }
+.fi-row dd { color: rgba(247, 247, 245, 0.72); }
+.fi-wide { grid-column: 1 / -1; }
+
+/* 하단 — 링크 / 카피라이트 */
+.footer-bottom {
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-line-dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 24px;
+  flex-wrap: wrap;
+}
+.footer-links { display: flex; gap: 20px; }
 .footer-links a { color: rgba(247, 247, 245, 0.75); font-weight: 500; }
 .footer-links a:hover { color: #fff; }
-.footer-copy { margin-top: 18px; font-size: 12.5px; color: rgba(247, 247, 245, 0.35); }
+.footer-copy { font-size: 12.5px; color: rgba(247, 247, 245, 0.35); }
 
 /* ============================================================
    모바일 하단 고정 바 · 데스크톱 플로팅 전화
@@ -266,6 +324,12 @@ address { font-style: normal; }
 }
 .mobile-cta-bar .cta-call { background: var(--color-accent); color: #16130E; }
 .mobile-cta-bar .cta-kakao { background: var(--color-ink); color: var(--color-paper); }
+/* 버튼 내 아이콘 — 팔레트를 따라가는 단색 SVG */
+.mobile-cta-bar a .ico,
+.floating-call .ico { flex: none; margin-right: 7px; }
+.mobile-cta-bar .cta-kakao img { width: 18px; height: 18px; margin-right: 7px; object-fit: contain; flex: none; }
+/* 카카오 URL 미설정 시 — 전화 버튼이 전체 폭을 차지 */
+.mobile-cta-bar.is-single .cta-call { flex: 1 1 100%; }
 
 .floating-call {
   position: fixed;
@@ -350,8 +414,12 @@ address { font-style: normal; }
   body { padding-bottom: 60px; }
   .mobile-cta-bar { display: flex; }
   .floating-call { display: none; }
-  .footer-top { flex-direction: column; }
+  .footer-top { flex-direction: column; align-items: flex-start; }
+  .footer-contact { width: 100%; justify-content: space-between; gap: 16px; }
   .footer-tel { text-align: left; }
+  .footer-info dl { grid-template-columns: minmax(0, 1fr); column-gap: 0; }
+  .fi-row { grid-template-columns: 92px minmax(0, 1fr); gap: 10px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
   .site-footer { padding-bottom: 32px; }
 }
 
