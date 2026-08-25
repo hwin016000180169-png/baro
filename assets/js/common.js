@@ -121,7 +121,6 @@
       if (lastFocus) lastFocus.focus();
     }
     function updateLightbox() {
-      // 실제 사진 적용 시: 여기서 .lightbox-body의 이미지 src를 교체
       var lbImg = lightbox.querySelector('.lb-img');
       var src = galleryItems[current].getAttribute('data-img');
       if (lbImg && src) { lbImg.src = src; lbImg.alt = galleryItems[current].getAttribute('data-caption') || ''; }

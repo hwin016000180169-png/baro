@@ -506,7 +506,8 @@
 }
 .notice-list { border-top: 1px solid var(--color-ink); }
 .notice-list li { border-bottom: 1px solid var(--color-line); }
-.notice-list a {
+.notice-list a,
+.notice-list .n-item {
   display: flex;
   justify-content: space-between;
   gap: 20px;

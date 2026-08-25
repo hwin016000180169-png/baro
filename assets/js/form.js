@@ -5,8 +5,13 @@
 (function () {
   'use strict';
 
-  // TODO: Google Apps Script 웹 앱 배포 URL로 교체
-  var FORM_ENDPOINT = '[APPS_SCRIPT_URL]';
+  /* ============================================================
+     ★ 폼 접수 주소 — Google Apps Script 웹 앱 배포 URL을 받는 즉시 여기에 넣으세요.
+       예) var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfy.../exec';
+       비워두면 전송을 시도하지 않고 곧바로 '전화 상담' 안내를 띄웁니다.
+       (접수되지 않은 신청이 접수된 것처럼 보이지 않게 하기 위함)
+     ============================================================ */
+  var FORM_ENDPOINT = '';
   // 대표번호
   var TEL_DISPLAY = '1661-8570';
   var TEL_HREF = 'tel:16618570';
@@ -65,6 +70,8 @@
     });
     if (firstInvalid) { firstInvalid.focus(); return; }
 
+    if (!FORM_ENDPOINT) { showResult(false, true); return; }
+
     var submitBtn = form.querySelector('button[type="submit"]');
     var originalText = submitBtn.textContent;
     submitBtn.disabled = true;
@@ -82,7 +89,7 @@
       });
   });
 
-  function showResult(ok) {
+  function showResult(ok, offline) {
     var box = document.createElement('div');
     box.className = 'form-result';
     box.setAttribute('role', 'status');
@@ -97,8 +104,11 @@
       var prev = form.parentNode.querySelector('.form-result');
       if (prev) prev.remove();
       box.innerHTML =
-        '<h3>전송에 실패했습니다</h3>' +
-        '<p>잠시 후 다시 시도하시거나, 전화로 문의해 주세요.</p>' +
+        (offline
+          ? '<h3>온라인 접수 준비 중입니다</h3>' +
+            '<p>지금은 전화 상담으로 바로 도와드리고 있습니다.<br>연락 주시면 무료 현장 견적을 잡아드립니다.</p>'
+          : '<h3>전송에 실패했습니다</h3>' +
+            '<p>잠시 후 다시 시도하시거나, 전화로 문의해 주세요.</p>') +
         '<a class="btn btn-accent" href="' + TEL_HREF + '">전화 상담 <span class="num">' + TEL_DISPLAY + '</span></a>';
       form.parentNode.insertBefore(box, form);
       box.scrollIntoView({ block: 'center' });
