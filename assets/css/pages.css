@@ -372,6 +372,22 @@
   color: var(--color-ink-soft);
 }
 
+/* 사례 번호 배지 — 갤러리 안내 문구("사례 번호를 말씀해 주세요")와 짝을 이룸 */
+.case-card, .gallery-item figure { position: relative; }
+.case-no {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding: 5px 11px 6px;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
 /* ============================================================
    [메인] 예약 유도 CTA
    ============================================================ */
@@ -451,6 +467,9 @@
   gap: clamp(40px, 6vw, 88px);
   align-items: start;
 }
+/* DOM은 폼이 먼저 — 모바일에서 폼이 바로 보이게. 데스크톱은 배치로 좌:절차 우:폼 유지 */
+.reserve-layout > aside { grid-column: 1; grid-row: 1; }
+.reserve-layout > .reserve-form { grid-column: 2; grid-row: 1; }
 .process-list { border-top: 1px solid var(--color-ink); }
 .process-list li {
   display: flex;
@@ -701,6 +720,9 @@
   .closing-steps li:nth-child(even) { border-left: 1px solid var(--color-line-dark); padding-left: 22px; }
   .cases-grid, .gallery-grid { grid-template-columns: 1fr 1fr; }
   .reserve-layout { grid-template-columns: 1fr; }
+  /* 1열이 되면 DOM 순서(폼 → 절차)를 그대로 따른다 */
+  .reserve-layout > aside,
+  .reserve-layout > .reserve-form { grid-column: 1; grid-row: auto; }
   .fleet-row { grid-template-columns: minmax(150px, 220px) 90px 1fr; gap: 16px; }
 }
 
@@ -740,7 +762,15 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.45; /* 텍스트 가독 확보 — 밝은 이미지면 0.35까지 낮출 것 */
+  opacity: 0.7;
+}
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(26, 28, 31, 0.82) 0%, rgba(26, 28, 31, 0.5) 45%, rgba(26, 28, 31, 0.15) 100%),
+              linear-gradient(to top, rgba(26, 28, 31, 0.8) 0%, transparent 40%);
+  pointer-events: none;
 }
 .case-img {
   display: block;

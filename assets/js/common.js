@@ -15,6 +15,59 @@
 
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ============================================================
+     오버레이 공통 처리 (모바일 메뉴 · 라이트박스)
+       - 열려 있는 동안 뒤쪽 페이지를 키보드 탐색 대상에서 제외한다
+       - Tab이 오버레이 밖으로 빠져나가지 않도록 가둔다
+     ============================================================ */
+  var FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+  function makeOverlay(roots, backdropSelectors) {
+    var active = false;
+
+    function focusables() {
+      var out = [];
+      roots.forEach(function (root) {
+        if (!root) return;
+        if (root.matches && root.matches(FOCUSABLE)) out.push(root);
+        Array.prototype.push.apply(out, root.querySelectorAll(FOCUSABLE));
+      });
+      return out.filter(function (el) {
+        return el.offsetWidth || el.offsetHeight || el.getClientRects().length;
+      });
+    }
+
+    function backdrop() {
+      var out = [];
+      backdropSelectors.forEach(function (sel) {
+        Array.prototype.push.apply(out, document.querySelectorAll(sel));
+      });
+      return out;
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (!active || e.key !== 'Tab') return;
+      var f = focusables();
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      var inside = roots.some(function (r) { return r && (r === document.activeElement || r.contains(document.activeElement)); });
+      if (!inside) { e.preventDefault(); first.focus(); return; }
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }, true);
+
+    return {
+      activate: function () {
+        active = true;
+        backdrop().forEach(function (el) { el.inert = true; el.setAttribute('aria-hidden', 'true'); });
+      },
+      deactivate: function () {
+        active = false;
+        backdrop().forEach(function (el) { el.inert = false; el.removeAttribute('aria-hidden'); });
+      }
+    };
+  }
+
   /* ---------- 헤더: 스크롤 시 배경 ---------- */
   var header = document.querySelector('.site-header');
   var floatingCall = document.querySelector('.floating-call');
@@ -29,19 +82,43 @@
 
   /* ---------- 모바일 네비 토글 ---------- */
   var toggle = document.querySelector('.nav-toggle');
-  if (toggle) {
-    toggle.addEventListener('click', function () {
-      var open = document.body.classList.toggle('nav-open');
+  var gnb = document.querySelector('.gnb');
+  if (toggle && gnb) {
+    // 닫기 버튼(햄버거)도 메뉴의 일부이므로 포커스 대상에 함께 넣는다
+    var navOverlay = makeOverlay([toggle, gnb], ['#main', '.site-footer', '.mobile-cta-bar', '.floating-call']);
+
+    var setNav = function (open) {
+      document.body.classList.toggle('nav-open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       toggle.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+      if (open) {
+        navOverlay.activate();
+        var firstLink = gnb.querySelector('a');
+        if (firstLink) firstLink.focus();
+      } else {
+        navOverlay.deactivate();
+      }
+    };
+
+    toggle.addEventListener('click', function () {
+      setNav(!document.body.classList.contains('nav-open'));
     });
     // 메뉴 링크 클릭 시 닫기
     document.querySelectorAll('.gnb a').forEach(function (a) {
-      a.addEventListener('click', function () {
-        document.body.classList.remove('nav-open');
-        toggle.setAttribute('aria-expanded', 'false');
-      });
+      a.addEventListener('click', function () { setNav(false); });
     });
+    // Esc로 닫고 햄버거로 포커스 복귀
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && document.body.classList.contains('nav-open')) {
+        setNav(false);
+        toggle.focus();
+      }
+    });
+    // 데스크톱 폭으로 넓어지면 열린 상태를 정리 (배경이 잠긴 채 남지 않도록)
+    var navMq = window.matchMedia('(min-width: 961px)');
+    var onNavMq = function () { if (navMq.matches && document.body.classList.contains('nav-open')) setNav(false); };
+    if (navMq.addEventListener) navMq.addEventListener('change', onNavMq);
+    else if (navMq.addListener) navMq.addListener(onNavMq);
   }
 
   /* ---------- 숫자 카운트업 ---------- */
@@ -106,6 +183,7 @@
     var lbCount = lightbox.querySelector('.lb-count');
     var current = 0;
     var lastFocus = null;
+    var lbOverlay = makeOverlay([lightbox], ['#main', '.site-header', '.site-footer', '.mobile-cta-bar', '.floating-call']);
 
     function openLightbox(index) {
       current = index;
@@ -113,12 +191,16 @@
       lastFocus = document.activeElement;
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';
+      lbOverlay.activate();
       lightbox.querySelector('.lightbox-close').focus();
     }
     function closeLightbox() {
       lightbox.classList.remove('open');
       document.body.style.overflow = '';
-      if (lastFocus) lastFocus.focus();
+      lbOverlay.deactivate();
+      // 닫으면 방금 보던 사진의 카드로 포커스를 돌려준다 (←/→로 이동했을 수 있으므로 현재 사진 기준)
+      var back = galleryItems[current] || lastFocus;
+      if (back && back.focus) back.focus();
     }
     function updateLightbox() {
       var lbImg = lightbox.querySelector('.lb-img');

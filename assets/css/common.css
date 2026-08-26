@@ -344,6 +344,13 @@ address { font-style: normal; }
 /* 카카오 URL 미설정 시 — 전화 버튼이 전체 폭을 차지 */
 .mobile-cta-bar.is-single .cta-call { flex: 1 1 100%; }
 
+/* 모바일 메뉴가 열린 동안 — 배경 스크롤을 잠그고 하단 상담 바를 감춘다 (메뉴에 집중) */
+.nav-open { overflow: hidden; }
+.nav-open .mobile-cta-bar,
+.nav-open .floating-call { display: none; }
+/* 배경이 비활성(inert)일 때는 클릭·선택도 막는다 */
+[inert] { user-select: none; }
+
 .floating-call {
   position: fixed;
   right: 28px; bottom: 28px;
@@ -415,7 +422,10 @@ address { font-style: normal; }
     background: var(--color-ink);
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.25s var(--ease), visibility 0.25s;
+    /* visibility는 트랜지션에 넣지 않는다.
+       트랜지션이 진행되지 않는 상황에서도 열림/닫힘 상태가 어긋나지 않아야 한다
+       (숨겨진 전체화면 오버레이가 남으면 뒤쪽 페이지 클릭이 막힘). */
+    transition: opacity 0.25s var(--ease);
   }
   .nav-open .gnb { visibility: visible; opacity: 1; }
   .gnb a { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; padding: 6px 0; color: var(--color-paper); }
