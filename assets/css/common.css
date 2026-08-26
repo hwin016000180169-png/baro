@@ -284,6 +284,9 @@ address { font-style: normal; }
 
 /* 사업자 정보 — 라벨/값 2열 정렬 */
 .footer-info { padding-top: 26px; font-style: normal; }
+/* 메일 주소는 눌러서 바로 보낼 수 있는 자리 — 링크임을 드러낸다 */
+.footer-info dd a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: rgba(247, 247, 245, 0.35); }
+.footer-info dd a:hover { color: var(--color-accent); text-decoration-color: var(--color-accent); }
 .footer-info dl {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
