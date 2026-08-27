@@ -4,24 +4,35 @@
    ============================================================ */
 
 :root {
-  /* 브랜드 팔레트 — 로고에서 추출한 모노크롬 + 앰버 포인트 */
-  --color-brand: #EAEAEA;        /* 명함 웜 그레이 — 서피스 */
-  --color-brand-dark: #2A2422;   /* 명함 웜 차콜 — 반전 섹션 배경 */
-  --color-ink: #1A1C1F;          /* 본문 · 헤드라인 */
-  --color-ink-soft: #55575C;     /* 보조 텍스트 */
-  --color-paper: #F7F7F5;        /* 페이지 베이스 */
-  --color-accent: #C9862B;       /* 전화 CTA 전용 앰버 */
-  --color-accent-deep: #A96D1D;  /* 앰버 호버 */
-  --color-line: #DAD4D0;         /* 밝은 배경 구분선 */
-  --color-line-dark: rgba(247, 247, 245, 0.16); /* 어두운 배경 구분선 */
-  --color-ph: #E5E2DE;           /* 이미지 플레이스홀더 */
+  /* 브랜드 팔레트 — 네이비 + 화이트 */
+  --color-brand: #E7EEF7;        /* 페일 네이비 — 서피스 */
+  --color-brand-dark: #143254;   /* 미드 네이비 — 반전 섹션 배경 */
+  --color-ink: #0D2138;          /* 딥 네이비 — 본문 · 헤드라인 · 반전 배경 */
+  --color-ink-soft: #566B84;     /* 보조 텍스트 */
+  --color-paper: #F6F9FD;        /* 페이지 베이스 */
+  --color-white: #FFFFFF;        /* 카드 서피스 */
+  /* 강조색 두 갈래 — 밝은 배경에는 accent, 네이비 위에는 accent-soft.
+     한 색으로 통일하면 어느 한쪽에서 반드시 대비가 무너진다. */
+  --color-accent: #1C63C8;       /* CTA · 강조 (밝은 배경) */
+  --color-accent-deep: #12468F;  /* 호버 */
+  --color-accent-soft: #7DB6F7;  /* 네이비 위 강조 */
+  --color-line: #D7E2EF;         /* 밝은 배경 구분선 */
+  --color-line-dark: rgba(237, 244, 252, 0.16); /* 어두운 배경 구분선 */
+  --color-ph: #E2EAF4;           /* 이미지 플레이스홀더 */
 
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, "Malgun Gothic", sans-serif;
 
   --container: 1160px;
   --header-h: 72px;
   --gutter: clamp(20px, 4vw, 40px);
-  --radius: 2px;
+  /* 모서리 — 각진 인상을 덜어내되 과하게 둥글지 않은 선 */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 18px;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 1px 2px rgba(13, 33, 56, 0.04), 0 8px 24px rgba(13, 33, 56, 0.06);
+  --shadow-card-hover: 0 2px 4px rgba(13, 33, 56, 0.06), 0 14px 34px rgba(13, 33, 56, 0.10);
 
   --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
@@ -58,13 +69,22 @@ address { font-style: normal; }
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
+  border-radius: var(--radius-sm);
 }
+/* 네이비 위에서는 진한 파랑 링이 배경에 묻는다 — 밝은 쪽으로 바꾼다 */
+.on-dark :focus-visible,
+.hero :focus-visible,
+.page-head :focus-visible,
+.site-header :focus-visible,
+.site-footer :focus-visible,
+.lightbox :focus-visible { outline-color: var(--color-accent-soft); }
 
 /* ---------- 스킵 링크 ---------- */
 .skip-link {
   position: absolute; left: 12px; top: -48px; z-index: 200;
   padding: 10px 18px;
   background: var(--color-ink); color: #fff; font-weight: 500;
+  border-radius: var(--radius-sm);
   transition: top 0.2s var(--ease);
 }
 .skip-link:focus { top: 12px; }
@@ -87,6 +107,7 @@ address { font-style: normal; }
   color: var(--color-accent);
   margin-bottom: 14px;
 }
+.on-dark .overline { color: var(--color-accent-soft); }
 .section-title {
   font-size: clamp(26px, 4vw, 40px);
   font-weight: 800;
@@ -113,7 +134,7 @@ address { font-style: normal; }
 .ln { display: block; text-wrap: balance; }
 
 .on-dark .section-title { color: var(--color-paper); }
-.on-dark .section-desc { color: rgba(247, 247, 245, 0.66); }
+.on-dark .section-desc { color: rgba(237, 244, 252, 0.66); }
 
 /* ---------- 버튼 ---------- */
 .btn {
@@ -130,15 +151,16 @@ address { font-style: normal; }
 }
 .btn-accent {
   background: var(--color-accent);
-  color: #16130E;
+  color: #FFFFFF;
   font-weight: 800;
+  box-shadow: 0 4px 14px rgba(28, 99, 200, 0.28);
 }
 .btn-accent:hover { background: var(--color-accent-deep); color: #fff; }
 .btn-ghost-light {
-  border: 1px solid rgba(247, 247, 245, 0.4);
+  border: 1px solid rgba(237, 244, 252, 0.4);
   color: var(--color-paper);
 }
-.btn-ghost-light:hover { border-color: var(--color-paper); background: rgba(247, 247, 245, 0.06); }
+.btn-ghost-light:hover { border-color: var(--color-paper); background: rgba(237, 244, 252, 0.06); }
 .btn-ghost-dark {
   border: 1px solid var(--color-ink);
   color: var(--color-ink);
@@ -184,12 +206,12 @@ address { font-style: normal; }
   padding: 0 16px;
   font-size: 15px;
   font-weight: 500;
-  color: rgba(247, 247, 245, 0.78);
+  color: rgba(237, 244, 252, 0.78);
   transition: color 0.2s var(--ease);
 }
 .gnb a:hover, .gnb a[aria-current="page"] { color: #fff; }
 
-.header-tel {
+.gnb .header-tel {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
@@ -197,10 +219,10 @@ address { font-style: normal; }
   margin-left: 12px;
   font-size: 17px;
   font-weight: 800;
-  color: var(--color-accent);
+  color: var(--color-accent-soft);
   border-left: 1px solid var(--color-line-dark);
 }
-.header-tel:hover { color: #E2A752; }
+.gnb .header-tel:hover { color: #fff; }
 
 /* 햄버거 — 순수 CSS 라인 */
 .nav-toggle {
@@ -228,7 +250,7 @@ address { font-style: normal; }
    ============================================================ */
 .site-footer {
   background: var(--color-ink);
-  color: rgba(247, 247, 245, 0.55);
+  color: rgba(237, 244, 252, 0.55);
   padding: 56px 0 40px;
   font-size: 13.5px;
   line-height: 1.75;
@@ -266,7 +288,7 @@ address { font-style: normal; }
   color: var(--color-paper);
   letter-spacing: -0.01em;
 }
-.footer-tel strong a:hover { color: var(--color-accent); }
+.footer-tel strong a:hover { color: var(--color-accent-soft); }
 
 .footer-sns { display: flex; gap: 8px; }
 .footer-sns a {
@@ -278,15 +300,15 @@ address { font-style: normal; }
   border-radius: 50%;
   transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease);
 }
-.footer-sns a:hover { border-color: rgba(247, 247, 245, 0.45); background: rgba(247, 247, 245, 0.06); }
+.footer-sns a:hover { border-color: rgba(237, 244, 252, 0.45); background: rgba(237, 244, 252, 0.06); }
 .footer-sns img { width: 21px; height: 21px; object-fit: contain; opacity: 0.8; transition: opacity 0.2s var(--ease); }
 .footer-sns a:hover img { opacity: 1; }
 
 /* 사업자 정보 — 라벨/값 2열 정렬 */
 .footer-info { padding-top: 26px; font-style: normal; }
 /* 메일 주소는 눌러서 바로 보낼 수 있는 자리 — 링크임을 드러낸다 */
-.footer-info dd a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: rgba(247, 247, 245, 0.35); }
-.footer-info dd a:hover { color: var(--color-accent); text-decoration-color: var(--color-accent); }
+.footer-info dd a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: rgba(237, 244, 252, 0.35); }
+.footer-info dd a:hover { color: var(--color-accent-soft); text-decoration-color: var(--color-accent-soft); }
 .footer-info dl {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -299,8 +321,8 @@ address { font-style: normal; }
   gap: 12px;
   align-items: baseline;
 }
-.fi-row dt { color: rgba(247, 247, 245, 0.38); font-weight: 400; }
-.fi-row dd { color: rgba(247, 247, 245, 0.72); }
+.fi-row dt { color: rgba(237, 244, 252, 0.38); font-weight: 400; }
+.fi-row dd { color: rgba(237, 244, 252, 0.72); }
 .fi-wide { grid-column: 1 / -1; }
 
 /* 하단 — 링크 / 카피라이트 */
@@ -315,9 +337,9 @@ address { font-style: normal; }
   flex-wrap: wrap;
 }
 .footer-links { display: flex; gap: 20px; }
-.footer-links a { color: rgba(247, 247, 245, 0.75); font-weight: 500; }
+.footer-links a { color: rgba(237, 244, 252, 0.75); font-weight: 500; }
 .footer-links a:hover { color: #fff; }
-.footer-copy { font-size: 12.5px; color: rgba(247, 247, 245, 0.35); }
+.footer-copy { font-size: 12.5px; color: rgba(237, 244, 252, 0.35); }
 
 /* ============================================================
    모바일 하단 고정 바 · 데스크톱 플로팅 전화
@@ -338,7 +360,7 @@ address { font-style: normal; }
   font-size: 16px;
   font-weight: 800;
 }
-.mobile-cta-bar .cta-call { background: var(--color-accent); color: #16130E; }
+.mobile-cta-bar .cta-call { background: var(--color-accent); color: #FFFFFF; }
 .mobile-cta-bar .cta-kakao { background: var(--color-ink); color: var(--color-paper); }
 /* 버튼 내 아이콘 — 팔레트를 따라가는 단색 SVG */
 .mobile-cta-bar a .ico,
@@ -363,11 +385,11 @@ address { font-style: normal; }
   min-height: 52px;
   padding: 0 26px;
   background: var(--color-accent);
-  color: #16130E;
+  color: #FFFFFF;
   font-size: 16px;
   font-weight: 800;
-  border-radius: 30px;
-  box-shadow: 0 6px 24px rgba(26, 28, 31, 0.25);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 6px 24px rgba(13, 33, 56, 0.25);
   opacity: 0;
   visibility: hidden;
   transform: translateY(8px);
@@ -402,11 +424,13 @@ address { font-style: normal; }
   letter-spacing: 0.01em;
   text-align: center;
   padding: 12px;
+  border-radius: var(--radius);
+  overflow: hidden;
 }
 .on-dark .ph {
-  background: rgba(247, 247, 245, 0.07);
+  background: rgba(237, 244, 252, 0.07);
   border-color: var(--color-line-dark);
-  color: rgba(247, 247, 245, 0.45);
+  color: rgba(237, 244, 252, 0.45);
 }
 
 /* ============================================================
@@ -432,7 +456,7 @@ address { font-style: normal; }
   }
   .nav-open .gnb { visibility: visible; opacity: 1; }
   .gnb a { font-size: 26px; font-weight: 800; letter-spacing: -0.02em; padding: 6px 0; color: var(--color-paper); }
-  .header-tel { margin: 18px 0 0; padding: 0; border: 0; font-size: 20px; }
+  .gnb .header-tel { margin: 18px 0 0; padding: 0; border: 0; font-size: 20px; }
   .nav-toggle { display: block; }
 }
 

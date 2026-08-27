@@ -68,6 +68,24 @@
     };
   }
 
+  /* ---------- 히어로 배경 영상 ----------
+     4MB짜리를 무조건 내려받게 하지 않는다. 모바일 데이터·데이터 절약 모드·
+     모션 최소화 설정에서는 포스터 이미지만 남기고 영상은 아예 요청하지 않는다.
+     (그래서 마크업의 preload는 none — 여기서 load()를 부르기 전까지 통신이 없다) */
+  var heroVideo = document.querySelector('.hero-video');
+  if (heroVideo) {
+    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    var saveData = !!(conn && (conn.saveData || /2g/.test(conn.effectiveType || '')));
+    var wideEnough = window.matchMedia('(min-width: 768px)').matches;
+
+    if (!reducedMotion && !saveData && wideEnough) {
+      heroVideo.load();
+      var play = heroVideo.play();
+      // 자동재생이 거부돼도 포스터가 그대로 남으므로 화면은 깨지지 않는다
+      if (play && play.catch) play.catch(function () {});
+    }
+  }
+
   /* ---------- 헤더: 스크롤 시 배경 ---------- */
   var header = document.querySelector('.site-header');
   var floatingCall = document.querySelector('.floating-call');

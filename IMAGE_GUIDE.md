@@ -58,7 +58,7 @@
 
 | # | 파일 : 위치 | 슬롯 | 저장 파일명 | 규격(px) | 내용 |
 |---|---|---|---|---|---|
-| 1 | `index.html:71` (`.hero-bg`) | 히어로 배경 | `hero-bg.jpg` | 2000×1200 | 철거 현장 광각. 어둡게 — 위에 흰 텍스트가 올라감 |
+| ~~1~~ | `index.html` (`.hero-bg`) | ~~히어로 배경~~ | — | — | **이미지 슬롯 아님.** 배경 영상(`assets/video/hero.mp4`)으로 대체됨 → [4-0](#4-0-히어로-배경-영상) |
 | 2 | `index.html:235` | 시공사례 1 | `case-01.jpg` | 800×600 | 상가 원상복구 |
 | 3 | `index.html:236` | 시공사례 2 | `case-02.jpg` | 800×600 | 사무실 인테리어 철거 (야간) |
 | 4 | `index.html:237` | 시공사례 3 | `case-03.jpg` | 800×600 | 학교 시설 철거 |
@@ -88,14 +88,31 @@
 
 ## 5. 삽입 방법 — 그대로 따라 할 것
 
-### 5-1. 히어로 배경 (`index.html:71`)
+### 4-0. 히어로 배경 영상
+
+히어로는 **이미지가 아니라 영상**입니다. `.hero-bg` 안에 `<img>`를 넣지 마세요.
 
 ```html
-<!-- 교체 전 -->
-<div class="ph">배경: 현장 사진 자리 · 2000×1200</div>
-<!-- 교체 후 -->
-<img src="./assets/img/hero-bg.jpg" alt="" width="2000" height="1200">
+<video class="hero-video" muted loop playsinline preload="none"
+       poster="./assets/video/hero-poster.jpg" width="1920" height="1012">
+  <source src="./assets/video/hero.webm" type="video/webm">
+  <source src="./assets/video/hero.mp4" type="video/mp4">
+</video>
 ```
+
+영상을 교체할 때 —
+
+1. 원본을 `assets/video/`에 두고 (`.mov`는 `.gitignore` 처리되어 커밋되지 않음) 아래로 변환한다.
+   ```
+   ffmpeg -i 원본 -an -vf "scale=1920:-2" -c:v libx264 -crf 25 -preset slow -pix_fmt yuv420p -movflags +faststart assets/video/hero.mp4
+   ffmpeg -i 원본 -an -vf "scale=1600:-2" -c:v libvpx-vp9 -crf 36 -b:v 0 -row-mt 1 assets/video/hero.webm
+   ffmpeg -ss 1 -i 원본 -frames:v 1 -vf "scale=1920:-2" -q:v 5 assets/video/hero-poster.jpg
+   ```
+2. **소리 트랙은 반드시 제거**(`-an`)한다. 자동재생은 무음일 때만 허용된다.
+3. mp4는 5MB 이하를 넘기지 않는다. 넘으면 `-crf` 값을 올린다.
+4. 교체 후 `.hero-video`의 `opacity`(현재 0.34)를 다시 맞춘다 — **히어로 문구 대비 7:1 이상**이 기준.
+   영상이 밝을수록 값을 낮춘다. 재생 중 가장 밝은 프레임 기준으로 확인할 것.
+5. `preload="none"` 과 `muted` 속성은 지우지 않는다. 재생 시작은 `common.js`가 조건(데스크톱 · 데이터 절약 꺼짐 · 모션 최소화 아님)을 확인한 뒤 처리한다.
 
 ### 5-2. 시공사례 카드 (`index.html:235~240`) — 6곳 동일 패턴
 
@@ -139,11 +156,13 @@ if (lbImg && src) { lbImg.src = src; lbImg.alt = galleryItems[current].getAttrib
 /* ============================================================
    실사 이미지 적용 (IMAGE_GUIDE.md 기준 — 이미지 AI가 추가)
    ============================================================ */
+.hero-video,
 .hero-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.45; /* 텍스트 가독 확보 — 밝은 이미지면 0.35까지 낮출 것 */
+  opacity: 0.34; /* 텍스트 가독 확보 — 영상/사진이 밝을수록 낮출 것 */
+  filter: saturate(0.4) contrast(1.06);
 }
 .case-img {
   display: block;

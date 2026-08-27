@@ -16,9 +16,11 @@ robots.txt / sitemap.xml
 assets/
   css/  common.css  변수·리셋·헤더·푸터·버튼
         pages.css   페이지별 스타일 + 스냅 모드
-  js/   common.js   스냅 스크롤·스크롤 리빌·카운트업·라이트박스
+  js/   common.js   히어로 영상·스냅 스크롤·스크롤 리빌·카운트업·라이트박스
         form.js     예약 폼 검증·전송
   img/              로고 및 사이트 이미지
+  video/            히어로 배경 영상 (hero.mp4 · hero.webm · hero-poster.jpg)
+                    원본 .mov 은 .gitignore 처리 — 변환본만 커밋
 로고/                로고 원본 소스 (AI · PNG · JPG)
 ```
 
@@ -27,6 +29,9 @@ assets/
 - **빌드 단계 없음.** npm·webpack·React 등 도입 금지. 파일을 그대로 올려 동작해야 합니다.
 - 모든 경로는 **상대경로** (`./assets/...`)
 - 폰트는 Pretendard CDN, jQuery 미사용
+- 팔레트는 **네이비 + 화이트**. 색은 전부 `assets/css/common.css` 최상단 `:root` 변수로만 쓴다
+  (밝은 배경 강조 `--color-accent` / 네이비 위 강조 `--color-accent-soft` — 둘을 바꿔 쓰면 대비가 무너짐)
+- 모서리도 변수로만: `--radius-sm` 8px · `--radius` 12px · `--radius-lg` 18px · `--radius-pill`
 - 스크롤 연출은 `IntersectionObserver` 기반 자체 구현 (외부 라이브러리 없음)
 - `prefers-reduced-motion` 존중, 모바일 360px부터 대응
 

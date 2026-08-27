@@ -91,8 +91,13 @@
     <!-- 1. 히어로 -->
     <section class="hero">
       <div class="hero-bg" aria-hidden="true">
-        <!-- 현장 사진 확보 시 이곳에 배경 이미지 삽입 (권장 2000×1200 이상, 어둡게 보정) -->
-        <img src="./assets/img/hero-bg.jpg" alt="" width="2000" height="1200">
+        <!-- 배경 영상. preload="none" + poster로 두고, 실제 재생은 common.js가 조건을 확인한 뒤 시작한다
+             (모바일 · 데이터 절약 모드 · 모션 최소화 설정에서는 포스터 이미지만 남는다) -->
+        <video class="hero-video" muted loop playsinline preload="none"
+               poster="./assets/video/hero-poster.jpg" width="1920" height="1012">
+          <source src="./assets/video/hero.webm" type="video/webm">
+          <source src="./assets/video/hero.mp4" type="video/mp4">
+        </video>
       </div>
       <div class="container hero-inner">
         <div class="hero-copy">

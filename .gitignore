@@ -22,3 +22,6 @@ node_modules/
 # 작업용 원본 자료 (배포본은 assets/ 로 복사됨)
 자료/
 선별_이미지_후보/
+
+# 히어로 영상 원본 (ProRes 1.1GB) — 배포본은 assets/video/hero.mp4·webm 으로 변환해 커밋
+assets/video/*.mov
