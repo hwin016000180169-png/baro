@@ -18,6 +18,9 @@ assets/
         pages.css   페이지별 스타일 + 스냅 모드
   js/   common.js   히어로 영상·스냅 스크롤·스크롤 리빌·카운트업·라이트박스
         form.js     예약 폼 검증·전송
+emailjs/            예약 폼 메일 발송 설정 (배포되지 않는 참고 파일)
+  README.md         EmailJS 설정 절차 · 문제 해결
+  template.html     EmailJS 템플릿에 붙여넣을 메일 본문
   img/              로고 및 사이트 이미지
   video/            히어로 배경 영상 (hero.mp4 · hero.webm · hero-poster.jpg)
                     원본 .mov 은 .gitignore 처리 — 변환본만 커밋
@@ -57,7 +60,7 @@ assets/
 | 대표자명 | `[대표자명]` | 전 페이지 푸터 · privacy.html | 대괄호가 그대로 노출됨 (반드시 교체) |
 | 이메일 | `[이메일]` | 전 페이지 푸터 · privacy.html | 대괄호가 그대로 노출됨 (반드시 교체) |
 | 카카오톡 채널 URL | `KAKAO_URL` | `assets/js/common.js` 상단 | 카카오 버튼 자동 숨김 · 모바일 하단 바는 전화 상담이 전체 폭 |
-| 폼 접수 주소 | `FORM_ENDPOINT` | `assets/js/form.js` 상단 | 예약 폼 제출 시 `온라인 접수 준비 중입니다` + 전화 상담 안내 |
+| 폼 메일 발송 | `EMAILJS` 3개 키 | `assets/js/form.js` 상단 | 예약 폼 제출 시 `온라인 접수 준비 중입니다` + 전화 상담 안내<br>설정 절차는 [`emailjs/README.md`](./emailjs/README.md) |
 | 공지사항 | 홈페이지 오픈 공지 1건 | `support.html` 공지사항 | 실제 공지 추가는 해당 위치 주석 참고 |
 | 소유권 확인 | 네이버·구글 인증 메타태그 | 각 페이지 `<head>` 주석 | 검색엔진 등록 시 필요 |
 

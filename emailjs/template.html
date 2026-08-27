@@ -1,0 +1,70 @@
+<!--
+  EmailJS 템플릿 본문 — Email Templates → Content 를 "Code" 모드로 바꾸고
+  아래 내용을 통째로 붙여넣는다.
+
+  {{변수}} 이름은 assets/js/form.js 의 buildParams() 가 보내는 키와 정확히 같아야 한다.
+  하나라도 철자가 어긋나면 그 칸만 조용히 빈 채로 메일이 도착한다.
+
+  쓸 수 있는 변수 —
+    {{type_label}}   철거예약 | 폐기물예약
+    {{name}}         신청자 이름
+    {{tel}}          연락처 (010-1234-5678 형태)
+    {{tel_raw}}      연락처 (숫자만 — 전화 걸기 링크용)
+    {{region}}       시/도
+    {{address}}      상세 주소 (없으면 -)
+    {{date}}         희망 날짜
+    {{kind}}         철거 형태 | 폐기물 종류
+    {{memo}}         상세 내용 (없으면 -)
+    {{submitted_at}} 접수 시각
+-->
+<div style="font-family:-apple-system,'Malgun Gothic',sans-serif;max-width:560px;color:#0D2138">
+
+  <div style="background:#0D2138;color:#ffffff;padding:18px 22px;border-radius:12px 12px 0 0">
+    <div style="font-size:13px;color:#7DB6F7;letter-spacing:.04em">바로철거 홈페이지 접수</div>
+    <div style="font-size:20px;font-weight:800;margin-top:4px">{{type_label}} 신청</div>
+  </div>
+
+  <div style="border:1px solid #D7E2EF;border-top:0;border-radius:0 0 12px 12px;padding:18px 22px">
+    <table style="width:100%;border-collapse:collapse;font-size:14px">
+      <tr>
+        <th style="text-align:left;padding:8px 14px 8px 0;color:#566B84;font-weight:400;white-space:nowrap;vertical-align:top">이름</th>
+        <td style="padding:8px 0;color:#0D2138;font-weight:700">{{name}}</td>
+      </tr>
+      <tr>
+        <th style="text-align:left;padding:8px 14px 8px 0;color:#566B84;font-weight:400;white-space:nowrap;vertical-align:top">연락처</th>
+        <td style="padding:8px 0;color:#0D2138;font-weight:700">{{tel}}</td>
+      </tr>
+      <tr>
+        <th style="text-align:left;padding:8px 14px 8px 0;color:#566B84;font-weight:400;white-space:nowrap;vertical-align:top">지역</th>
+        <td style="padding:8px 0;color:#0D2138;font-weight:700">{{region}}</td>
+      </tr>
+      <tr>
+        <th style="text-align:left;padding:8px 14px 8px 0;color:#566B84;font-weight:400;white-space:nowrap;vertical-align:top">상세 주소</th>
+        <td style="padding:8px 0;color:#0D2138">{{address}}</td>
+      </tr>
+      <tr>
+        <th style="text-align:left;padding:8px 14px 8px 0;color:#566B84;font-weight:400;white-space:nowrap;vertical-align:top">희망 날짜</th>
+        <td style="padding:8px 0;color:#0D2138;font-weight:700">{{date}}</td>
+      </tr>
+      <tr>
+        <th style="text-align:left;padding:8px 14px 8px 0;color:#566B84;font-weight:400;white-space:nowrap;vertical-align:top">종류</th>
+        <td style="padding:8px 0;color:#0D2138;font-weight:700">{{kind}}</td>
+      </tr>
+      <tr>
+        <th style="text-align:left;padding:8px 14px 8px 0;color:#566B84;font-weight:400;white-space:nowrap;vertical-align:top">상세 내용</th>
+        <td style="padding:8px 0;color:#0D2138;white-space:pre-line">{{memo}}</td>
+      </tr>
+    </table>
+
+    <a href="tel:{{tel_raw}}"
+       style="display:inline-block;margin-top:18px;background:#1C63C8;color:#ffffff;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:12px">
+      신청자에게 전화 {{tel}}
+    </a>
+
+    <div style="margin-top:18px;padding-top:14px;border-top:1px solid #D7E2EF;font-size:12.5px;color:#566B84">
+      접수 시각 {{submitted_at}}<br>
+      바로철거 홈페이지 예약 폼에서 자동 발송된 메일입니다.
+    </div>
+  </div>
+
+</div>
