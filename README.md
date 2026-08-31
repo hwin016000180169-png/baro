@@ -32,8 +32,8 @@ emailjs/            예약 폼 메일 발송 설정 (배포되지 않는 참고 
 - **빌드 단계 없음.** npm·webpack·React 등 도입 금지. 파일을 그대로 올려 동작해야 합니다.
 - 모든 경로는 **상대경로** (`./assets/...`)
 - 폰트는 Pretendard CDN, jQuery 미사용
-- 팔레트는 **네이비 + 화이트**. 색은 전부 `assets/css/common.css` 최상단 `:root` 변수로만 쓴다
-  (밝은 배경 강조 `--color-accent` / 네이비 위 강조 `--color-accent-soft` — 둘을 바꿔 쓰면 대비가 무너짐)
+- 팔레트는 **블랙 + 웜 그레이 + 시그널 오렌지**. 색은 전부 `assets/css/common.css` 최상단 `:root` 변수로만 쓴다
+  (밝은 배경 강조 `--color-accent` #C2410C / 블랙 위 강조 `--color-accent-soft` #FF9A4D — 둘을 바꿔 쓰면 대비가 무너짐)
 - 모서리도 변수로만: `--radius-sm` 8px · `--radius` 12px · `--radius-lg` 18px · `--radius-pill`
 - 스크롤 연출은 `IntersectionObserver` 기반 자체 구현 (외부 라이브러리 없음)
 - `prefers-reduced-motion` 존중, 모바일 360px부터 대응

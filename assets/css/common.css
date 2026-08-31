@@ -4,21 +4,25 @@
    ============================================================ */
 
 :root {
-  /* 브랜드 팔레트 — 네이비 + 화이트 */
-  --color-brand: #E7EEF7;        /* 페일 네이비 — 서피스 */
-  --color-brand-dark: #143254;   /* 미드 네이비 — 반전 섹션 배경 */
-  --color-ink: #0D2138;          /* 딥 네이비 — 본문 · 헤드라인 · 반전 배경 */
-  --color-ink-soft: #566B84;     /* 보조 텍스트 */
-  --color-paper: #F6F9FD;        /* 페이지 베이스 */
+  /* 브랜드 팔레트 — 블랙 + 웜 그레이 + 시그널 오렌지
+     네이비는 밝지도 어둡지도 않은 중간 명도라 흰 글씨·검은 글씨 어느 쪽과도
+     대비가 애매했다. 명도 축을 블랙/오프화이트로 끝까지 벌리고,
+     색은 오렌지 한 갈래만 남겨 시선이 갈 곳을 하나로 모은다. */
+  --color-brand: #F1EFEA;        /* 웜 그레이 — 서피스 */
+  --color-brand-dark: #1C1C1E;   /* 차콜 — 반전 섹션 배경 */
+  --color-ink: #0E0E10;          /* 블랙 — 본문 · 헤드라인 · 반전 배경 */
+  --color-ink-soft: #5E5C57;     /* 보조 텍스트 — 오프화이트 위 6:1 */
+  --color-paper: #F7F6F3;        /* 페이지 베이스 */
   --color-white: #FFFFFF;        /* 카드 서피스 */
-  /* 강조색 두 갈래 — 밝은 배경에는 accent, 네이비 위에는 accent-soft.
-     한 색으로 통일하면 어느 한쪽에서 반드시 대비가 무너진다. */
-  --color-accent: #1C63C8;       /* CTA · 강조 (밝은 배경) */
-  --color-accent-deep: #12468F;  /* 호버 */
-  --color-accent-soft: #7DB6F7;  /* 네이비 위 강조 */
-  --color-line: #D7E2EF;         /* 밝은 배경 구분선 */
-  --color-line-dark: rgba(237, 244, 252, 0.16); /* 어두운 배경 구분선 */
-  --color-ph: #E2EAF4;           /* 이미지 플레이스홀더 */
+  /* 강조색 두 갈래 — 밝은 배경에는 accent, 블랙 위에는 accent-soft.
+     한 색으로 통일하면 어느 한쪽에서 반드시 대비가 무너진다.
+     accent #C2410C on #FFF → 5.2:1 · accent-soft #FF9A4D on #0E0E10 → 9.0:1 */
+  --color-accent: #C2410C;       /* CTA · 강조 (밝은 배경) */
+  --color-accent-deep: #9A3412;  /* 호버 */
+  --color-accent-soft: #FF9A4D;  /* 블랙 위 강조 */
+  --color-line: #E3E0D9;         /* 밝은 배경 구분선 */
+  --color-line-dark: rgba(247, 246, 243, 0.16); /* 어두운 배경 구분선 */
+  --color-ph: #E8E5DE;           /* 이미지 플레이스홀더 */
 
   --font-sans: "Pretendard Variable", Pretendard, -apple-system, "Malgun Gothic", sans-serif;
 
@@ -31,8 +35,8 @@
   --radius-lg: 18px;
   --radius-pill: 999px;
 
-  --shadow-card: 0 1px 2px rgba(13, 33, 56, 0.04), 0 8px 24px rgba(13, 33, 56, 0.06);
-  --shadow-card-hover: 0 2px 4px rgba(13, 33, 56, 0.06), 0 14px 34px rgba(13, 33, 56, 0.10);
+  --shadow-card: 0 1px 2px rgba(10, 10, 11, 0.04), 0 8px 24px rgba(10, 10, 11, 0.06);
+  --shadow-card-hover: 0 2px 4px rgba(10, 10, 11, 0.06), 0 14px 34px rgba(10, 10, 11, 0.10);
 
   --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
@@ -134,7 +138,7 @@ address { font-style: normal; }
 .ln { display: block; text-wrap: balance; }
 
 .on-dark .section-title { color: var(--color-paper); }
-.on-dark .section-desc { color: rgba(237, 244, 252, 0.66); }
+.on-dark .section-desc { color: rgba(247, 246, 243, 0.66); }
 
 /* ---------- 버튼 ---------- */
 .btn {
@@ -153,14 +157,14 @@ address { font-style: normal; }
   background: var(--color-accent);
   color: #FFFFFF;
   font-weight: 800;
-  box-shadow: 0 4px 14px rgba(28, 99, 200, 0.28);
+  box-shadow: 0 4px 14px rgba(194, 65, 12, 0.28);
 }
 .btn-accent:hover { background: var(--color-accent-deep); color: #fff; }
 .btn-ghost-light {
-  border: 1px solid rgba(237, 244, 252, 0.4);
+  border: 1px solid rgba(247, 246, 243, 0.4);
   color: var(--color-paper);
 }
-.btn-ghost-light:hover { border-color: var(--color-paper); background: rgba(237, 244, 252, 0.06); }
+.btn-ghost-light:hover { border-color: var(--color-paper); background: rgba(247, 246, 243, 0.06); }
 .btn-ghost-dark {
   border: 1px solid var(--color-ink);
   color: var(--color-ink);
@@ -206,7 +210,7 @@ address { font-style: normal; }
   padding: 0 16px;
   font-size: 15px;
   font-weight: 500;
-  color: rgba(237, 244, 252, 0.78);
+  color: rgba(247, 246, 243, 0.78);
   transition: color 0.2s var(--ease);
 }
 .gnb a:hover, .gnb a[aria-current="page"] { color: #fff; }
@@ -250,7 +254,7 @@ address { font-style: normal; }
    ============================================================ */
 .site-footer {
   background: var(--color-ink);
-  color: rgba(237, 244, 252, 0.55);
+  color: rgba(247, 246, 243, 0.55);
   padding: 56px 0 40px;
   font-size: 13.5px;
   line-height: 1.75;
@@ -300,14 +304,14 @@ address { font-style: normal; }
   border-radius: 50%;
   transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease);
 }
-.footer-sns a:hover { border-color: rgba(237, 244, 252, 0.45); background: rgba(237, 244, 252, 0.06); }
+.footer-sns a:hover { border-color: rgba(247, 246, 243, 0.45); background: rgba(247, 246, 243, 0.06); }
 .footer-sns img { width: 21px; height: 21px; object-fit: contain; opacity: 0.8; transition: opacity 0.2s var(--ease); }
 .footer-sns a:hover img { opacity: 1; }
 
 /* 사업자 정보 — 라벨/값 2열 정렬 */
 .footer-info { padding-top: 26px; font-style: normal; }
 /* 메일 주소는 눌러서 바로 보낼 수 있는 자리 — 링크임을 드러낸다 */
-.footer-info dd a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: rgba(237, 244, 252, 0.35); }
+.footer-info dd a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: rgba(247, 246, 243, 0.35); }
 .footer-info dd a:hover { color: var(--color-accent-soft); text-decoration-color: var(--color-accent-soft); }
 .footer-info dl {
   display: grid;
@@ -321,8 +325,8 @@ address { font-style: normal; }
   gap: 12px;
   align-items: baseline;
 }
-.fi-row dt { color: rgba(237, 244, 252, 0.38); font-weight: 400; }
-.fi-row dd { color: rgba(237, 244, 252, 0.72); }
+.fi-row dt { color: rgba(247, 246, 243, 0.38); font-weight: 400; }
+.fi-row dd { color: rgba(247, 246, 243, 0.72); }
 .fi-wide { grid-column: 1 / -1; }
 
 /* 하단 — 링크 / 카피라이트 */
@@ -337,9 +341,9 @@ address { font-style: normal; }
   flex-wrap: wrap;
 }
 .footer-links { display: flex; gap: 20px; }
-.footer-links a { color: rgba(237, 244, 252, 0.75); font-weight: 500; }
+.footer-links a { color: rgba(247, 246, 243, 0.75); font-weight: 500; }
 .footer-links a:hover { color: #fff; }
-.footer-copy { font-size: 12.5px; color: rgba(237, 244, 252, 0.35); }
+.footer-copy { font-size: 12.5px; color: rgba(247, 246, 243, 0.35); }
 
 /* ============================================================
    모바일 하단 고정 바 · 데스크톱 플로팅 전화
@@ -389,7 +393,7 @@ address { font-style: normal; }
   font-size: 16px;
   font-weight: 800;
   border-radius: var(--radius-pill);
-  box-shadow: 0 6px 24px rgba(13, 33, 56, 0.25);
+  box-shadow: 0 6px 24px rgba(10, 10, 11, 0.25);
   opacity: 0;
   visibility: hidden;
   transform: translateY(8px);
@@ -428,9 +432,9 @@ address { font-style: normal; }
   overflow: hidden;
 }
 .on-dark .ph {
-  background: rgba(237, 244, 252, 0.07);
+  background: rgba(247, 246, 243, 0.07);
   border-color: var(--color-line-dark);
-  color: rgba(237, 244, 252, 0.45);
+  color: rgba(247, 246, 243, 0.45);
 }
 
 /* ============================================================
